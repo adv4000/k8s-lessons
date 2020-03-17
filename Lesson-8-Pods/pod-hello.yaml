@@ -1,3 +1,8 @@
+#-------------------------------------------------------------
+# Simpliest Manifest File to create Pod with one Container
+#
+# Copyleft (c) by Denis Astahov 2020
+#-------------------------------------------------------------
 apiVersion : v1
 kind: Pod
 metadata:
