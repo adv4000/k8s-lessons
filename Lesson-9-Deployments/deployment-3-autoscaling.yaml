@@ -12,7 +12,7 @@ metadata:
     env  : prod
     owner: DenisAstahov
 spec:
-  replicas: 2
+#  replicas: 2   # Don't need this anymore as we are using HorizontalPodAutoscaler
   selector:
     matchLabels:
       project: mossad
