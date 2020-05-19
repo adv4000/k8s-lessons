@@ -1,0 +1,15 @@
+#-------------------------------------------------------------
+# Simpliest Manifest File to create Pod with one Container
+#
+# Copyleft (c) by Denis Astahov 2020
+#-------------------------------------------------------------
+apiVersion : v1
+kind: Pod
+metadata:
+  name: hello
+spec:
+  containers:
+    - name : container-hello
+      image: nginx:latest
+      ports:
+        - containerPort: 80

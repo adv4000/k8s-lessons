@@ -1,0 +1,25 @@
+#-------------------------------------------------------------
+# Manifest File to create Pod with two Containers
+#
+# Copyleft (c) by Denis Astahov 2020
+#-------------------------------------------------------------
+apiVersion : v1
+kind: Pod
+metadata:
+  name: my-app
+  labels:
+    env  : prod
+    app  : main
+    tier : frontend
+    owner: DenisAstahov
+spec:
+  containers:
+    - name : container-web
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+
+    - name : container-api
+      image: tomcat:8.5.38
+      ports:
+        - containerPort: 8080
