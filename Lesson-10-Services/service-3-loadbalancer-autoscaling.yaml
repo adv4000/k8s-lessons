@@ -1,8 +1,3 @@
-#-------------------------------------------------------------------------------------
-# Manifest File to create Single Container Pod with AutoScaling Deployment and Service
-#
-# Copyleft (c) by Denis Astahov 2020
-#-------------------------------------------------------------------------------------
 apiVersion : apps/v1
 kind: Deployment
 metadata:
@@ -10,21 +5,19 @@ metadata:
   labels:
     app : my-k8s-deployment
 spec:
-  #replicas: 3
   selector:
     matchLabels:
-      project: kgb
+      project: xyz
   template:
     metadata:
       labels:
-        project: kgb   # Service will look for those PODS Labels!!!
+        project: xyz   # Service will look for those PODS Labels!!!
     spec:
       containers:
-        - name : kgb-web
+        - name : xyz-web
           image: adv4000/k8sphp:latest
           ports:
             - containerPort: 80
-
 
 ---
 apiVersion: autoscaling/v2beta1
@@ -52,13 +45,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-single-pod-service
+  name: my-autoscaling-pod-service
   labels:
      env  : prod
      owner: DenisAstahov
 spec:
   selector:
-    project: kgb      # Selecting PODs with those Labels
+    project: xyz      # Selecting PODs with those Labels
   ports:
     - name      : app-listener
       protocol  : TCP
