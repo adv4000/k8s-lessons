@@ -1,0 +1,30 @@
+#---------------------------------------------------------------------
+# Manifest File to create AWS EKS Cluster in Custom VPC
+#
+# eksctl create cluster -f eks-cluster.yaml
+# eksctl delete cluster -f eks-cluster.yaml
+#
+# Copyleft (c) by Denis Astahov 2021
+#---------------------------------------------------------------------
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name  : advit-cluster
+  region: us-west-2
+
+vpc:
+ id     : "vpc-0b6d22b51c5fb22b5"
+ subnets:
+   public:
+      us-west-2a: { id: subnet-039fc2b104ddb9472 }  # For Load Balancer
+      us-west-2b: { id: subnet-01940287d1c617f7c }  # For Load Balancer
+   private:
+      us-west-2a: { id: subnet-0e5a0c43112216b89 }  # For Worker Nodes
+      us-west-2b: { id: subnet-04b4216e7f2adac45 }  # For Worker Nodes
+
+nodeGroups:
+  - name             : worker
+    instanceType     : t3.small
+    desiredCapacity  : 4
+    privateNetworking: true                         # Use Private Subnets
