@@ -1,0 +1,7 @@
+# helm repo add bitnami https://charts.bitnami.com/bitnami
+# helm install deniswebsite bitnami/apache -f apache_mywebpage.yaml
+
+cloneHtdocsFromGit:
+     enabled   : true
+     repository: https://github.com/adv4000/simplewebpage
+     branch    : main

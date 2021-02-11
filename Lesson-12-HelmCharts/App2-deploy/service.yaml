@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-single-pod2-service
+  labels:
+    env  : prod
+    owner: DenisAstahov
+spec:
+  selector:
+    project: kgb2    # Selecting PODS with those Labels
+  ports:
+    - name      : app2-listener
+      protocol  : TCP
+      port      : 80  # Port on Load Balancer
+      targetPort: 80  # Port on POD
+  type: LoadBalancer

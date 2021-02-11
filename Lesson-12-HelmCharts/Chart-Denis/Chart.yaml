@@ -1,0 +1,17 @@
+apiVersion: v2
+name       : App-HelmChart
+description: My Helm chart for Kubernetes
+type       : application
+version    : 0.1.0   # This is the Helm Chart version
+appVersion : "1.2.3" # This is the version of the application being deployed
+
+keywords:
+  - apache
+  - http
+  - https
+  - denisastahov
+
+maintainers:
+  - name : Denis Astahov
+    email: denis@astahov.net
+    url  : www.astahov.net
