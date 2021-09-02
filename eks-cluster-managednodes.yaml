@@ -1,0 +1,41 @@
+#-------------------------------------------------------------------------
+# Manifest File to create AWS EKS Cluster in Custom VPC with ManagedNodes
+#
+# eksctl create cluster -f eks-cluster.yaml
+# eksctl delete cluster -f eks-cluster.yaml
+# eksctl update cluster -f eks-cluster.yaml
+#
+# Copyleft (c) by Denis Astahov 2021
+#-------------------------------------------------------------------------
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name   : k8s-prod
+  version: "1.21"
+  region : eu-west-1
+  
+vpc:
+ subnets:
+   public:
+      eu-west-1a: { id: subnet-052450e8205b756ae }
+      eu-west-1b: { id: subnet-083ba192f0a91e893 }
+
+   private:
+      eu-west-1a: { id: subnet-0bdc7681fe8f09915 }
+      eu-west-1b: { id: subnet-0670735d9144585d3 }
+
+managedNodeGroups:
+  - name             : worker-group-1
+    instanceType     : m5.large
+    desiredCapacity  : 2
+    labels           : { role: worker1 }   
+    volumeSize       : 80
+    privateNetworking: true
+    
+  - name             : worker-group-2
+    instanceType     : r5.large
+    desiredCapacity  : 2
+    volumeSize       : 100
+    labels           : { role: worker2 }    
+    privateNetworking: true    
