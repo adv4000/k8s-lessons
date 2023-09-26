@@ -5,14 +5,14 @@
 # eksctl delete cluster -f eks-cluster.yaml
 # eksctl update cluster -f eks-cluster.yaml
 #
-# Copyleft (c) by Denis Astahov 2021
+# Copyleft (c) by Denis Astahov 2023
 #-------------------------------------------------------------------------
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
   name   : k8s-prod
-  version: "1.21"
+  version: "1.27"
   region : eu-west-1
   
 vpc:
