@@ -25,13 +25,13 @@ spec:
             - containerPort: 80
 
 ---
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: my-autoscaling
 spec:
   scaleTargetRef:
-    apiVersion: apps/v2beta1v1
+    apiVersion: apps/v1
     kind: Deployment
     name: my-web-deployment-autoscaling
   minReplicas: 2
@@ -40,11 +40,15 @@ spec:
   - type: Resource
     resource:
       name: cpu
-      targetAverageUtilization: 70
+      target:
+        type: Utilization
+        averageUtilization: 70
   - type: Resource
     resource:
       name: memory
-      targetAverageUtilization: 80
+      target:
+        type: Utilization
+        averageUtilization: 80
 
 ---
 apiVersion: v1
